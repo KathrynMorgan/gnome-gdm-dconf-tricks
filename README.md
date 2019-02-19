@@ -2,4 +2,4 @@
 
 gnome/gdm setup & config refrence
 
-![EXAMPLE][img/gdm3-tweaks.png]
+![EXAMPLE](img/gdm3-tweaks.png)
