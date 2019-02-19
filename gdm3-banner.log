@@ -1,0 +1,34 @@
+#######################################################################
+# Configure custom log in screen image
+vim /usr/share/gnome-shell/theme/gdm3.css
+vim /usr/share/gnome-shell/theme/ubuntu.css
+convert /usr/local/share/backgrounds/custom.jpg /usr/local/share/backgrounds/custom.png
+gconf update && systemctl restart gdm
+
+#######################################################################
+# Enable login screen banner
+gsettings set org.gnome.login-screen banner-message-enable true
+gsettings set org.gnome.login-screen disable-user-list true
+
+# WRITE Banner Enable+String Config
+cat <<EOF >>/etc/dconf/db/gdm.d/01-banner-message 
+[org/gnome/login-screen]
+banner-message-enable=true
+banner-message-text='Canonical Ltd Login Screen Banner Text Test String'
+EOF
+
+# Update Banner Text
+sed -i "s/^banner-message-text='.*\'/banner-message-text='$(hostname -s)'/g" /etc/dconf/db/gdm.d/01-banner-message && dconf update
+dconf update && systemctl restart gdm
+
+#######################################################################
+# OPTIONAL(s)
+# Install dconf-editor
+apt-get install dconf-editor dconf-tools
+
+#######################################################################
+# TESTING
+# Disable lock screen shield 
+#   https://github.com/lgpasquale/gnome-shell-extension-disable-screenshield
+cd /usr/share/gnome-shell/extensions/
+mkdir disable-screenshield@lgpasquale.com && cd disable-screenshield@lgpasquale.com/
