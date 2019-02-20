@@ -32,3 +32,7 @@ apt-get install dconf-editor dconf-tools
 #   https://github.com/lgpasquale/gnome-shell-extension-disable-screenshield
 cd /usr/share/gnome-shell/extensions/
 mkdir disable-screenshield@lgpasquale.com && cd disable-screenshield@lgpasquale.com/
+
+#######################################################################
+# REFRENCE
+# https://blog.chapus.net/more-gnome-unity-system-defaults/
